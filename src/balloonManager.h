@@ -14,6 +14,7 @@ private:
 	godot::TypedArray<Balloon> mBalloons;
 	double time_passed;
 	Ref<RandomNumberGenerator> mRng;
+	int balloonAmount;
 
 protected:
 	static void _bind_methods();
@@ -24,5 +25,7 @@ public:
 
 	void _process(double delta) override;
 	void _ready() override;
+	int getBalloonAmount();
+	void setBalloonAmount(int balloonCount);
 };
 }; //namespace godot
