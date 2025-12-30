@@ -10,12 +10,19 @@ using namespace godot;
 void godot::BalloonManager::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("setBalloonAmount", "balloonAmount"), &BalloonManager::setBalloonAmount);
 	ClassDB::bind_method(D_METHOD("getBalloonAmount"), &BalloonManager::getBalloonAmount);
-	ClassDB::bind_method(D_METHOD("setBalloonSprites"), &BalloonManager::setBalloonSprites);
-	ClassDB::bind_method(D_METHOD("getBalloonSprites"), &BalloonManager::getBalloonSprites);
+	ClassDB::bind_method(D_METHOD("setBalloonData"), &BalloonManager::setBalloonData);
+	ClassDB::bind_method(D_METHOD("getBalloonData"), &BalloonManager::getBalloonData);
 
 	// Register property so it shows in the inspector & scripts
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "Amount of Balloons"), "setBalloonAmount", "getBalloonAmount");
-	ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "Balloon Sprites", PROPERTY_HINT_ARRAY_TYPE, "Texture2D"), "setBalloonSprites", "getBalloonSprites");
+	ADD_PROPERTY(
+			PropertyInfo(
+					Variant::ARRAY,
+					"balloonData",
+					PROPERTY_HINT_TYPE_STRING,
+					String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_RESOURCE_TYPE) + ":BalloonData"),
+			"setBalloonData",
+			"getBalloonData");
 }
 
 godot::BalloonManager::BalloonManager() {
@@ -62,12 +69,14 @@ void godot::BalloonManager::_ready() {
 		float ranBalloonPos = mRng->randf_range(0.0f, vpRect.size.x);
 		float ranBalloonFloatSpeed = mRng->randf_range(20.0f, 100.0f);
 		float speed = ranBalloonFloatSpeed;
-		Ref<Texture2D> randomTexture = balloonSprites[mRng->randi_range(0, balloonSprites.size() - 1)];
+		Ref<BalloonData> data = balloonData[mRng->randi_range(0, balloonData.size() - 1)];
+		Ref<SpriteFrames> frames = data->getSpriteFrames();
 
 		Balloon *balloon = memnew(Balloon);
 		balloon->set_position(Vector2(ranBalloonPos, vpRect.size.y + 100.0f));
 		balloon->setSpeed(ranBalloonFloatSpeed);
-		balloon->set_texture(randomTexture);
+		balloon->set_sprite_frames(frames);
+		//balloon->setAnimationName(data->getAnimName());
 		//balloon->set_visible(false);
 
 		add_child(balloon);
@@ -101,12 +110,12 @@ void godot::BalloonManager::createBalloon() {
 	}
 }
 
-void godot::BalloonManager::setBalloonSprites(const Array &p_array) {
-    balloonSprites = p_array;
+void godot::BalloonManager::setBalloonData(const godot::TypedArray<BalloonData> &p_array) {
+	balloonData = p_array;
 }
 
-Array godot::BalloonManager::getBalloonSprites() const {
-    return balloonSprites;
+godot::TypedArray<BalloonData> godot::BalloonManager::getBalloonData() const {
+	return godot::TypedArray<BalloonData>();
 }
 
 void godot::BalloonManager::_process(double delta) {

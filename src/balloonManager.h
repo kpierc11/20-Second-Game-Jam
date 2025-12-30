@@ -1,9 +1,12 @@
 
 #pragma once
 #include "balloon.h"
+#include "balloonData.h"
 #include <godot_cpp/classes/node2d.hpp>
 #include <godot_cpp/classes/random_number_generator.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
+#include <godot_cpp/classes/animated_sprite2d.hpp>
+
 
 namespace godot {
 
@@ -18,7 +21,7 @@ private:
 	Area2D *mouseArea;
 	CollisionShape2D *shape;
 	int score;
-	Array balloonSprites; 
+	godot::TypedArray<BalloonData> balloonData; 
 
 protected:
 	static void _bind_methods();
@@ -32,7 +35,7 @@ public:
 	int getBalloonAmount();
 	void setBalloonAmount(int balloonCount);
 	void createBalloon();
-	void setBalloonSprites(const Array &p_array);
-	Array getBalloonSprites() const;
+	void setBalloonData(const godot::TypedArray<BalloonData> &p_array);
+	godot::TypedArray<BalloonData> getBalloonData() const;
 };
 }; //namespace godot

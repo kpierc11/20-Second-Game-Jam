@@ -1,6 +1,5 @@
 #include "register_types.h"
 
-#include "gdexample.h"
 #include "balloonManager.h"
 
 #include <gdextension_interface.h>
@@ -14,8 +13,8 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 		return;
 	}
 
-	GDREGISTER_RUNTIME_CLASS(GDExample);
 	GDREGISTER_RUNTIME_CLASS(Balloon);
+	GDREGISTER_RUNTIME_CLASS(BalloonData);
 	GDREGISTER_RUNTIME_CLASS(BalloonManager);
 }
 

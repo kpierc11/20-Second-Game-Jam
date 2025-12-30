@@ -5,19 +5,20 @@
 #include <godot_cpp/classes/input_event_mouse.hpp>
 #include <godot_cpp/classes/input_event_mouse_button.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/sprite_frames.hpp>
 
 void godot::Balloon::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("getSpeed"), &Balloon::getSpeed);
 	ClassDB::bind_method(D_METHOD("setSpeed", "speed"), &Balloon::setSpeed);
 	ClassDB::bind_method(D_METHOD("handleMouseEntered"), &Balloon::handleMouseEntered);
 	ClassDB::bind_method(D_METHOD("handleBalloonClicked", "viewport", "event", "shape_idx"), &Balloon::handleBalloonClicked);
+	ClassDB::bind_method(D_METHOD("onAnimationFinished"), &Balloon::onAnimationFinished);
 
 	// Register property so it shows in the inspector & scripts
 	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed"), "setSpeed", "getSpeed");
 }
 
 godot::Balloon::Balloon() {
-	
 }
 
 godot::Balloon::~Balloon() {
@@ -89,11 +90,19 @@ void godot::Balloon::setSpeed(float speed) {
 	floatSpeed = speed;
 }
 
+void godot::Balloon::onAnimationFinished() {
+	set_visible(false); 
+}
+
+
 void godot::Balloon::handleMouseEntered(Area2D *other_area) {
 	if (other_area->get_name().contains("mouseArea") && is_visible()) {
-		set_visible(false);
+		//set_visible(false);
 		area->set_deferred("monitoring", false);
 		sound->play();
+		get_sprite_frames()->set_animation_loop("pop", false);
+		play("pop");
+		connect("animation_finished", Callable(this, "onAnimationFinished"));
 	}
 }
 

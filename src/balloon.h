@@ -1,15 +1,15 @@
 #pragma once
+#include <godot_cpp/classes/animated_sprite2d.hpp>
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/audio_stream_player.hpp>
 #include <godot_cpp/classes/collision_shape2d.hpp>
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/random_number_generator.hpp>
-#include <godot_cpp/classes/sprite2d.hpp>
 
 namespace godot {
 
-class Balloon : public Sprite2D {
-	GDCLASS(Balloon, Sprite2D)
+class Balloon : public AnimatedSprite2D {
+	GDCLASS(Balloon, AnimatedSprite2D)
 
 private:
 	float floatSpeed;
@@ -18,7 +18,6 @@ private:
 	AudioStreamPlayer *sound = nullptr;
 	Ref<RandomNumberGenerator> mRng;
 	Ref<Texture2D> tex = nullptr;
-	
 
 protected:
 	static void _bind_methods();
@@ -33,6 +32,7 @@ public:
 
 	float getSpeed();
 	void setSpeed(float speed);
+	void onAnimationFinished();
 	void handleMouseEntered(Area2D *other_area);
 	void handleBalloonClicked(Node *viewport, Ref<InputEvent> event, int shape_idx);
 };
