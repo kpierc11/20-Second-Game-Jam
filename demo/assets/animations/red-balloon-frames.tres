@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://b2s424sr7bu4s"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://b2s424sr7bu4s"]
 
 [ext_resource type="Texture2D" uid="uid://cvdpkwroghrti" path="res://assets/animations/red-balloon-animation-pop.png" id="1_ygl34"]
 

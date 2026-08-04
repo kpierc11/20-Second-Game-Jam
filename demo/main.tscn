@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6ek13h1fgfmy"]
+[gd_scene format=3 uid="uid://c6ek13h1fgfmy"]
 
 [ext_resource type="Texture2D" uid="uid://dka8at7t2fvam" path="res://assets/background/blue sky/1.png" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://5yh62ac2kkom" path="res://assets/sprites/mouse-sword-godot-export.png" id="1_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://dl0hqb2rmtvn" path="res://assets/sprites/target.png" id="1_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://dw1mf3cwvowau" path="res://assets/background/blue sky/2.png" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://c5wiwharfiuo3" path="res://assets/background/blue sky/3.png" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://bm17o8fbx6w44" path="res://assets/background/blue sky/4.png" id="4_1bvp3"]
@@ -25,62 +25,58 @@ frames = ExtResource("6_5vw27")
 sprite = ExtResource("9_efxa6")
 frames = ExtResource("8_4c57u")
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=297640545]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=508186911]
 zoom = Vector2(0.05, 0.05)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1014371721]
 
-[node name="MouseSword" type="Sprite2D" parent="CanvasLayer"]
+[node name="MouseSword" type="Sprite2D" parent="CanvasLayer" unique_id=366447946]
 z_index = 4096
-rotation = -0.4886922
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_ycdy4")
-centered = false
-offset = Vector2(-125, -68)
 script = ExtResource("12_dg77c")
 
-[node name="Area2D" type="Area2D" parent="CanvasLayer/MouseSword"]
+[node name="Area2D" type="Area2D" parent="CanvasLayer/MouseSword" unique_id=480450081]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MouseSword/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MouseSword/Area2D" unique_id=696973438]
 position = Vector2(2.921523, 23.918566)
 shape = SubResource("RectangleShape2D_ycdy4")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=97774988]
 position = Vector2(329.5, 185.99997)
 stream = ExtResource("5_lquwl")
-volume_db = 2.213
-autoplay = true
+volume_db = 2.203
 parameters/looping = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=2012387797]
 position = Vector2(319, 176)
 scale = Vector2(1.1371528, 1.1358023)
 texture = ExtResource("1_0xm2m")
 
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer" unique_id=890946108]
 position = Vector2(319.75003, 182.99998)
 scale = Vector2(1.1328126, 1.0925926)
 texture = ExtResource("2_h2yge")
 
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer" unique_id=1239967613]
 position = Vector2(321, 229)
 scale = Vector2(1.1145834, 0.81867296)
 texture = ExtResource("3_h2yge")
 
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer" unique_id=323054204]
 position = Vector2(319.875, 195.00002)
 scale = Vector2(1.125434, 1.0050154)
 texture = ExtResource("4_1bvp3")
 
-[node name="LevelManager" type="LevelManager" parent="CanvasLayer"]
+[node name="LevelManager" type="LevelManager" parent="CanvasLayer" unique_id=1694059151]
 
-[node name="BalloonManager" type="BalloonManager" parent="CanvasLayer"]
+[node name="BalloonManager" type="BalloonManager" parent="CanvasLayer" unique_id=2121418516]
 "Amount of Balloons" = 500
 balloonData = Array[BalloonData]([SubResource("BalloonData_4c57u"), SubResource("BalloonData_dg77c")])
 
-[node name="Menu" parent="CanvasLayer" node_paths=PackedStringArray("levelManager", "balloonManager") instance=ExtResource("6_7mycd")]
+[node name="Menu" parent="CanvasLayer" unique_id=2095943051 node_paths=PackedStringArray("levelManager", "balloonManager") instance=ExtResource("6_7mycd")]
 script = ExtResource("11_efxa6")
 levelManager = NodePath("../LevelManager")
 balloonManager = NodePath("../BalloonManager")

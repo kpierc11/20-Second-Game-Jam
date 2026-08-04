@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://clqmymbhrue3t"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://clqmymbhrue3t"]
 
 [ext_resource type="Texture2D" uid="uid://byjgkxjp62eb0" path="res://assets/animations/teal-balloon-anim.png" id="1_wtwvu"]
 

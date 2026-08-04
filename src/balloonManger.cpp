@@ -110,7 +110,7 @@ void godot::BalloonManager::createBalloon() {
 
 		if (!balloon->is_visible()) {
 			float ranBalloonPos = mRng->randf_range(-300.0f, 250.0f);
-			float ranBalloonFloatSpeed = mRng->randf_range(20.0f, 100.0f);
+			float ranBalloonFloatSpeed = mRng->randf_range(20.0f, 100.0f); .
 			float speed = ranBalloonFloatSpeed;
 
 			balloon->set_position(Vector2(ranBalloonPos, windowSize.height + 10.0f));
